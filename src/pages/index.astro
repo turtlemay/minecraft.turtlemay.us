@@ -1,0 +1,344 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import LinkCallout from "../components/LinkCallout.astro";
+import { Image } from "astro:assets";
+
+import headerImg from "../images/2024-12-10_17.21.04.jpg";
+import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
+import hubImg from "../images/2024-12-11_13.45.54.jpg";
+
+const UPDATED_DATE = new Date("Dec 12, 2024");
+
+const MC_SERVER_VERSION = "1.21.3";
+---
+<head>
+	<BaseHead />
+	<title>Turtlemay's Minecraft Landing Page</title>
+	<meta name="description" content="Turtlemay's Minecraft server landing page." />
+</head>
+<body>
+	<div class="header-image">
+		<Image src={headerImg} alt="" width={1920} />
+	</div>
+	<div class="page-header">
+		<h1 class="heading">Turtlemay's Private Minecraft Server</h1>
+		<div class="subheading" aria-hidden="true">
+			<span>mc.trtl.in</span>
+			<span class="dingbat" aria-hidden="true">❖</span>
+			<span>{MC_SERVER_VERSION}</span>
+		</div>
+	</div>
+	<main class="page-content">
+		<section>
+			<p>
+				<samp>mc.trtl.in</samp>
+				is my new small
+				<a href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc">Minecraft</a>
+				server in the eastern US with survival and creative maps. Vanilla co-op survival is our foundation, complemented by a classic flat grass creative world.
+			</p>
+		</section>
+		<section>
+			<h2>Status</h2>
+			<p>
+				This server is brand new and ready to launch with fresh worlds. I am looking for a small group of players to start.
+			</p>
+			<Image src={hubImg} alt="" width={500} />
+			<p>
+				News will be posted to the private
+				<a href="https://discord.com/">Discord</a>.
+			</p>
+		</section>
+		<section>
+			<h2>About Turtlemay</h2>
+			<p>30M delivery driver with several hobbies.</p>
+			<p>
+				My Minecraft play style is cozy neighborhood builder. I like bringing home interesting materials and improving my tiny houses and farms.
+			</p>
+			<Image src={turtlemayImg} alt="" width={500} />
+			<p>
+				My Minecraft knowledge covers early beta through the "Combat Update" (2016), after which I stopped playing for many years. I will be learning about the new features as I go.
+			</p>
+			<p>I have lots of experience with servers.</p>
+			<p>
+				You can learn more about me at my
+				<a href="https://www.turtlemay.us/">personal site</a>.
+			</p>
+			<aside aria-hidden="true">
+				<LinkCallout text="My Website" href="https://www.turtlemay.us/" />
+			</aside>
+		</section>
+		<section>
+			<h2>Who should join?</h2>
+			<p>
+				You should join if you're an adult looking for some light co-op a few times a week or so. You must be older than 21, LGBTQ+ friendly, and preferably near the eastern United States. Any experience level is fine.
+			</p>
+			<p>
+				Other than adding you to the group, I will not be acting as moderator or dungeon master. I am looking for friends and equals for a casual small community experience.
+			</p>
+			<p>
+				Voice chat is not a priority but I would like to do some occasional group events.
+			</p>
+		</section>
+		<section>
+			<h2>How to apply</h2>
+			<div class="apply-block">
+				To request access, send an email to
+				<span class="email">
+					<samp>mc<span class="email-at"></span>trtl.in</samp>
+				</span>
+				and respond to the following:
+				<ul class="prompts-list">
+					<li>What is your experience with Minecraft?</li>
+					<li>What is your general play style?</li>
+					<li>Minecraft username</li>
+				</ul>
+				<p>
+					Once whitelisted, I will add you on Discord so you can see other members and explore the server as you like.
+				</p>
+				<ul>
+					<li>
+						<b>Minecraft server address</b>: (whitelist only)<br/>
+						<samp class="minecraft-address">mc.trtl.in</samp>
+					</li>
+					<li>
+						<b>Discord server</b>: (invite only)<br/>
+						You'll be added to Turtlemay's personal server.
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="server-rules">
+			<h2>Server Rules</h2>
+			<ul>
+				<li>Be good to each other.</li>
+			</ul>
+			<div class="column-layout">
+				<section>
+					<h3 class="heading">Survival Worlds</h3>
+					<ul>
+						<li>Strict vanilla gameplay, normal difficulty, with no cheats or teleports (besides switching worlds).</li>
+						<li>No unconsenting PVP, stealing, or griefing.</li>
+					</ul>
+				</section>
+				<section>
+					<h3 class="heading">Creative Worlds</h3>
+					<ul>
+						<li>Build what you want.</li>
+						<li>Respect others' creations.</li>
+					</ul>
+				</section>
+			</div>
+		</section>
+		<section>
+			<h2>Technical Details</h2>
+			<p>
+				Just like the good old days, the server is hosted on an anemic low-end VPS with dual-core 2.10 GHz and 2G RAM, care of Cloudfanatic. Located in North Carolina. Performance is good enough for several players. Upgrades are a later discussion.
+			</p>
+			<p>
+				We are using the latest Paper server software with minimal plugins besides MultiVerse and some creative tools.
+			</p>
+			<p>
+				Test your ping with
+				<samp>ping mc.trtl.in</samp>.
+				You want well below 100ms or you might have a bad time.
+			</p>
+		</section>
+		<hr />
+	</main>
+	<div class="updated-date">
+		Updated:
+		<date datetime={UPDATED_DATE.toISOString()} aria-description="page updated date">
+			{UPDATED_DATE.toLocaleDateString("en-us", { year: "numeric", month: "short", day: "numeric"})}
+		</date>
+	</div>
+</body>
+
+<style>
+body {
+	margin: 0;
+}
+
+section > img {
+	box-sizing: border-box;
+	max-width: 100%;
+	height: auto;
+	padding: 6px;
+	border: 1px solid #eee;
+}
+
+h2 {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 0.5em;
+	&::after {
+		content: "";
+		border-bottom: 1px solid #eee;
+	}
+}
+
+h3 {
+	font-size: inherit;
+	margin: 0;
+}
+
+ul {
+	list-style: "❖";
+	li {
+		padding-left: 0.5em;
+		margin-bottom: 0.5em;
+	}
+	li::marker {
+		color: #ccc;
+		font-weight: normal !important;
+	}
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid #eee;
+	width: 4em;
+	margin: 2em auto;
+}
+
+hr.dingbat {
+	border: 0;
+	width: unset;
+	margin: 2em auto;
+	text-align: center;
+	&::before {
+		font-size: 30px;
+		content: "❦";
+		color: #eee;
+	}
+}
+
+samp {
+	color: black;
+	padding: 0 5px;
+	background: #f5f5f5;
+}
+
+.email-at {
+	&::before {
+		content: "(at)";
+	}
+}
+
+.minecraft-address {
+	&::after {
+		content: ":25565";
+		color: #aaa;
+	}
+}
+
+.header-image {
+	background: black;
+	color: white;
+	display: flex;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.page-header {
+	background: #050505;
+	padding: 2em 1em;
+	text-align: center;
+	color: #fff;
+	> :first-child {
+		margin-top: 0;
+	}
+	> :last-child {
+		margin-bottom: 0;
+	}
+	.heading {
+		font: bold 30px "Roboto", sans-serif;
+	}
+	.subheading {
+		font: 16px "Roboto", sans-serif;
+		color: #666;
+	}
+	.dingbat {
+		color: #333;
+	}
+}
+
+.page-content {
+	margin: 0 auto 10em;
+	padding-left: var(--site-margin);
+	padding-right: var(--site-margin);
+	max-width: 800px;
+	font: 16px "Roboto", sans-serif;
+	line-height: 1.7;
+	color: #222;
+}
+
+.page-content > section {
+	margin: 1em 0 2em;
+}
+
+.page-content > :first-child {
+	margin: 2em 0;
+}
+
+.updated-date {
+	font: 14px "Roboto", sans-serif;
+	text-align: center;
+	color: #999;
+	margin: 2em 0;
+}
+
+.page-content a {
+	text-decoration: inherit;
+	color: black;
+	border-bottom: 2px solid #eee;
+	transition-duration: 200ms;
+	transition-property: filter;
+	&:hover {
+		filter: contrast(0.8);
+	}
+	&:active {
+		filter: brightness(0.8);
+	}
+}
+
+.apply-block {
+	padding: 2em;
+	background: #f5f5f5;
+	border: 5px solid #eee;
+	border-left: 0;
+	border-right: 0;
+	> :first-child {
+		margin-top: 0;
+	}
+	samp {
+		background: #fff;
+	}
+	.prompts-list {
+		li {
+			font-weight: bold;
+		}
+	}
+}
+
+.server-rules .column-layout {
+	@media (width > 700px) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1em;
+		margin: 1.5em 0;
+		.heading {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			align-items: center;
+			gap: 1em;
+			&::after {
+				content: "";
+				border-bottom: 1px solid #eee;
+			}
+		}
+	}
+}
+</style>
