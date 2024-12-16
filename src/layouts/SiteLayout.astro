@@ -4,10 +4,18 @@ import { Image } from "astro:assets";
 
 import headerImg from "../images/2024-12-10_17.21.04.jpg";
 
+interface Props {
+	title?: string;
+	description?: string;
+}
+
 const MC_SERVER_VERSION = "1.21.3";
+
+Astro.props.title ??= "Turtlemay's Minecraft Server";
+Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 ---
 <head>
-	<BaseHead title="Turtlemay's Minecraft Server" description="Turtlemay's Minecraft server landing page." />
+	<BaseHead title={Astro.props.title} description={Astro.props.description} />
 </head>
 <body>
 	<div class="header-image">
