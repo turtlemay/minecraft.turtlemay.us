@@ -2,9 +2,10 @@
 interface Props {
 	text: string;
 	href: string;
+	reverseArrow?: boolean;
 }
 ---
-<div class="link-callout">
+<div class="link-callout" class:list={{ "reverse-arrow": Astro.props.reverseArrow }}>
 	<a href={Astro.props.href}>
 		<span class="text">{Astro.props.text}</span>
 		<div class="arrow" aria-hidden="true">
@@ -51,5 +52,13 @@ interface Props {
 	&:active {
 		transform: scale(0.98);
 	}
+}
+
+.link-callout.reverse-arrow a {
+	flex-direction: row-reverse;
+}
+
+.link-callout.reverse-arrow .arrow {
+	transform: scaleX(-1);
 }
 </style>
