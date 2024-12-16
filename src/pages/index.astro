@@ -1,34 +1,15 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import { Image } from "astro:assets";
 
-import headerImg from "../images/2024-12-10_17.21.04.jpg";
 import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
 
 const UPDATED_DATE = new Date("Dec 12, 2024");
-
-const MC_SERVER_VERSION = "1.21.3";
 ---
-<head>
-	<BaseHead />
-	<title>Turtlemay's Minecraft Landing Page</title>
-	<meta name="description" content="Turtlemay's Minecraft server landing page." />
-</head>
-<body>
-	<div class="header-image">
-		<Image src={headerImg} alt="" width={1920} />
-	</div>
-	<div class="page-header">
-		<h1 class="heading">Turtlemay's Private Minecraft Server</h1>
-		<div class="subheading" aria-hidden="true">
-			<span>mc.trtl.in</span>
-			<span class="dingbat" aria-hidden="true">❖</span>
-			<span>{MC_SERVER_VERSION}</span>
-		</div>
-	</div>
-	<main class="page-content">
+<SiteLayout>
+	<main class="site-page">
 		<section>
 			<p>
 				<samp>mc.trtl.in</samp>
@@ -151,72 +132,14 @@ const MC_SERVER_VERSION = "1.21.3";
 			{UPDATED_DATE.toLocaleDateString("en-us", { year: "numeric", month: "short", day: "numeric"})}
 		</date>
 	</div>
-</body>
+</SiteLayout>
 
 <style>
-body {
-	margin: 0;
-}
-
-section > img {
-	box-sizing: border-box;
-	max-width: 100%;
-	height: auto;
-	padding: 6px;
-	border: 1px solid #eee;
-}
-
-h2 {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	align-items: center;
-	gap: 0.5em;
-	&::after {
-		content: "";
-		border-bottom: 1px solid #eee;
-	}
-}
-
-h3 {
-	font-size: inherit;
-	margin: 0;
-}
-
-ul {
-	list-style: "❖";
-	li {
-		padding-left: 0.5em;
-		margin-bottom: 0.5em;
-	}
-	li::marker {
-		color: #ccc;
-		font-weight: normal !important;
-	}
-}
-
-hr {
-	border: 0;
-	border-bottom: 1px solid #eee;
-	width: 4em;
-	margin: 2em auto;
-}
-
-hr.dingbat {
-	border: 0;
-	width: unset;
-	margin: 2em auto;
+.updated-date {
+	font: 14px "Roboto", sans-serif;
 	text-align: center;
-	&::before {
-		font-size: 30px;
-		content: "❦";
-		color: #eee;
-	}
-}
-
-samp {
-	color: black;
-	padding: 0 5px;
-	background: #f5f5f5;
+	color: #999;
+	margin: 2em 0;
 }
 
 .email-at {
@@ -229,78 +152,6 @@ samp {
 	&::after {
 		content: ":25565";
 		color: #aaa;
-	}
-}
-
-.header-image {
-	background: black;
-	color: white;
-	display: flex;
-	img {
-		width: 100%;
-		height: auto;
-	}
-}
-
-.page-header {
-	background: #050505;
-	padding: 2em 1em;
-	text-align: center;
-	color: #fff;
-	> :first-child {
-		margin-top: 0;
-	}
-	> :last-child {
-		margin-bottom: 0;
-	}
-	.heading {
-		font: bold 30px "Roboto", sans-serif;
-	}
-	.subheading {
-		font: 16px "Roboto", sans-serif;
-		color: #666;
-	}
-	.dingbat {
-		color: #333;
-	}
-}
-
-.page-content {
-	margin: 0 auto 10em;
-	padding-left: var(--site-margin);
-	padding-right: var(--site-margin);
-	max-width: 800px;
-	font: 16px "Roboto", sans-serif;
-	line-height: 1.7;
-	color: #222;
-}
-
-.page-content > section {
-	margin: 1em 0 2em;
-}
-
-.page-content > :first-child {
-	margin: 2em 0;
-}
-
-.updated-date {
-	font: 14px "Roboto", sans-serif;
-	text-align: center;
-	color: #999;
-	margin: 2em 0;
-}
-
-.page-content a {
-	text-decoration: inherit;
-	color: black;
-	border-bottom: 2px solid #eee;
-	transition-duration: 200ms;
-	transition-property: filter;
-	&:hover {
-		filter: contrast(0.8);
-	}
-	&:active {
-		filter: brightness(0.8);
 	}
 }
 

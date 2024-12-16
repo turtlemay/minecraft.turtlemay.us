@@ -1,0 +1,60 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { Image } from "astro:assets";
+
+import headerImg from "../images/2024-12-10_17.21.04.jpg";
+
+const MC_SERVER_VERSION = "1.21.3";
+---
+<head>
+	<BaseHead title="Turtlemay's Minecraft Server" description="Turtlemay's Minecraft server landing page." />
+</head>
+<body>
+	<div class="header-image">
+		<Image src={headerImg} alt="" width={1920} />
+	</div>
+	<div class="page-header">
+		<h1 class="heading">Turtlemay's Private Minecraft Server</h1>
+		<div class="subheading" aria-hidden="true">
+			<span>mc.trtl.in</span>
+			<span class="dingbat" aria-hidden="true">❖</span>
+			<span>{MC_SERVER_VERSION}</span>
+		</div>
+	</div>
+	<slot />
+</body>
+
+<style>
+.header-image {
+	background: black;
+	color: white;
+	display: flex;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.page-header {
+	background: #050505;
+	padding: 2em 1em;
+	text-align: center;
+	color: #fff;
+	> :first-child {
+		margin-top: 0;
+	}
+	> :last-child {
+		margin-bottom: 0;
+	}
+	.heading {
+		font: bold 30px "Roboto", sans-serif;
+	}
+	.subheading {
+		font: 16px "Roboto", sans-serif;
+		color: #666;
+	}
+	.dingbat {
+		color: #333;
+	}
+}
+</style>

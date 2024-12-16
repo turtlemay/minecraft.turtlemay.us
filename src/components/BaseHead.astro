@@ -2,7 +2,14 @@
 import "../global.css";
 import "@fontsource/roboto/latin.css";
 import "@fontsource/roboto/latin-italic.css";
+
+interface Props {
+	title: string;
+	description: string;
+}
 ---
 <meta charset="UTF-8" />
 <meta name="author" content="Turtlemay" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content={Astro.props.description} />
+<title>{Astro.props.title}</title>
