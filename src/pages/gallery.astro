@@ -108,6 +108,14 @@ h2 .tip-text {
 		margin: 0 auto;
 		max-width: 100%;
 		height: auto;
+		transition-duration: 200ms;
+		transition-property: border-color, filter;
+		&:hover {
+			border-color: #bbb;
+		}
+		&:active {
+			filter: contrast(0.8);
+		}
 	}
 	a {
 		border: 0;
