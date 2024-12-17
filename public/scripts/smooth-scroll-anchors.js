@@ -1,3 +1,5 @@
+// @ts-check
+
 for (const v of document.querySelectorAll("a[href^='#']")) {
 	v.addEventListener("click", e => {
 		e.preventDefault();
