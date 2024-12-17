@@ -2,11 +2,15 @@
 
 for (const v of document.querySelectorAll("a[href^='#']")) {
 	v.addEventListener("click", e => {
+		const href = v.getAttribute("href") ?? "#";
+
+		if (href === "#") return;
+
 		e.preventDefault();
 
-		history.pushState(null, "", v.getAttribute("href"));
+		history.pushState(null, "", href);
 
-		document.querySelector(v.getAttribute("href"))
-			.scrollIntoView({ behavior: "smooth" });
+		const scrollToEl = document.querySelector(href);
+		scrollToEl?.scrollIntoView({ behavior: "smooth" });
 	});
 }
