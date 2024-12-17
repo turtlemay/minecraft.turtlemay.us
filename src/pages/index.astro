@@ -3,6 +3,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import { Image } from "astro:assets";
 
+import emailText from "../email-body.txt?raw";
+
 import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
 
@@ -88,6 +90,9 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 					</li>
 				</ul>
 			</div>
+			<div class="email-link" id="email-link">
+				<LinkCallout text="Send Email" href="#" />
+			</div>
 		</section>
 		<section class="server-rules">
 			<h2>Server Rules</h2>
@@ -138,6 +143,38 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 	</div>
 </SiteLayout>
 
+<script define:vars={{ emailText }}>
+const el = document.querySelector("#email-link a");
+
+el?.addEventListener("click", e => {
+	e.preventDefault();
+
+	const subject = encodeURIComponent("Whitelist Application");
+	const body = encodeURIComponent(emailText ?? "");
+
+	let eml = "Turtlemay";
+	eml += " ";
+	eml += "<";
+	eml += "mc";
+	eml += String.fromCharCode(0x40);
+	eml += "trtl.in";
+	eml += ">";
+
+	let href = "mail";
+	href += "to";
+	href += ":";
+	href += eml;
+	href += "?";
+	href += "subject=";
+	href += subject;
+	href += "&";
+	href += "body=";
+	href += body;
+
+	location.href = href;
+});
+</script>
+
 <style>
 .updated-date {
 	font: 14px "Roboto", sans-serif;
@@ -176,6 +213,10 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 			font-weight: bold;
 		}
 	}
+}
+
+.email-link {
+	margin: 1em 0;
 }
 
 .server-rules .column-layout {
