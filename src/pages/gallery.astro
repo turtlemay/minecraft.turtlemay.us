@@ -4,6 +4,7 @@ import path from "node:path";
 import { Image } from "astro:assets";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
+import TipWidget from "../components/TipWidget.astro";
 
 import whacACreep from "../images/whac-a-creeper.gif";
 
@@ -36,10 +37,12 @@ const images = await getImages();
 			</a>
 		</section>
 		<section>
-			<h2 title="turtlebox/mayful.net era">
+			<h2>
 				<span>
 					<span>2011—2015</span>
-					<span class="info-widget" />
+					<TipWidget width="10em">
+						<span class="tip-text">turtlebox / mayful.net era</span>
+					</TipWidget>
 				</span>
 			</h2>
 			<p>Shenanigans from another time.</p>
@@ -69,16 +72,8 @@ a:has(img) {
 	filter: none !important;
 }
 
-h2 {
-	.info-widget {
-		color: #ddd;
-		margin: 0 2px;
-		cursor: help;
-		font-weight: normal;
-		&::after {
-			content: "ⓘ";
-		}
-	}
+h2 .tip-text {
+	font-size: 16px;
 }
 
 .featured-image {

@@ -1,0 +1,69 @@
+---
+interface Props {
+	width?: string;
+}
+---
+<span class="tip-widget" style={`--width: ${Astro.props.width};`}>
+	<span class="hover-text">
+		<span class="dingbat" />
+		<span>
+			<slot />
+		</span>
+	</span>
+</span>
+
+<style>
+.tip-widget {
+	--width: 0;
+	position: relative;
+	display: inline-block;
+	margin: 0 2px;
+	font-weight: normal;
+	cursor: help;
+	&::after {
+		content: "ⓘ";
+		color: #ddd;
+		transition-duration: 200ms;
+		transition-property: color;
+	}
+	:is(&:hover, &:active)::after {
+		color: #999;
+	}
+}
+
+.hover-text {
+	position: absolute;
+	bottom: 100%;
+	display: inline-grid;
+	justify-content: center;
+	align-items: center;
+	grid-template-columns: auto 1fr;
+	margin-left: calc(var(--width) / -2);
+	width: var(--width);
+	padding: 0.25em 0.5em;
+	border-radius: 5px;
+	line-height: 1;
+	background: #000;
+	color: #fff;
+	z-index: 1;
+	opacity: 0;
+	transform: translateY(2px);
+	transition-duration: 200ms;
+	transition-property: opacity, transform;
+	> * {
+		display: inline-flex;
+		justify-content: center;
+	}
+	.dingbat {
+		color: #444;
+		&::before {
+			content: "ⓘ";
+		}
+	}
+}
+
+.tip-widget:hover .hover-text {
+	opacity: 1;
+	transform: none;
+}
+</style>
