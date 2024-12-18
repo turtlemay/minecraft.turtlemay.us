@@ -3,8 +3,6 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import { Image } from "astro:assets";
 
-import emailText from "../email-body.txt?raw";
-
 import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
 
@@ -143,7 +141,9 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 	</div>
 </SiteLayout>
 
-<script define:vars={{ emailText }}>
+<script>
+import emailText from "../email-body.txt?raw";
+
 const el = document.querySelector("#email-link a");
 
 el?.addEventListener("click", e => {
