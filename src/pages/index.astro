@@ -2,6 +2,9 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import { Image } from "astro:assets";
+import { getMailLink } from "../lib/email";
+
+import emailText from "../email-body.txt?raw";
 
 import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
@@ -89,7 +92,7 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 				</ul>
 			</div>
 			<div class="email-link" id="email-link">
-				<LinkCallout text="Send Email" href="#" />
+				<LinkCallout text="Send Email" href={getMailLink({ subject: "Whitelist Application", message: emailText })} />
 			</div>
 		</section>
 		<section class="server-rules">
@@ -142,36 +145,21 @@ const UPDATED_DATE = new Date("Dec 16, 2024");
 </SiteLayout>
 
 <script>
+import { getMailLink } from "../lib/email";
+
 import emailText from "../email-body.txt?raw";
 
 const el = document.querySelector("#email-link a");
 
 el?.addEventListener("click", e => {
 	e.preventDefault();
-
-	const subject = encodeURIComponent("Whitelist Application");
-	const body = encodeURIComponent(emailText ?? "");
-
-	let eml = "Turtlemay";
-	eml += " ";
-	eml += "<";
-	eml += "mc";
-	eml += String.fromCharCode(0x40);
-	eml += "trtl.in";
-	eml += ">";
-
-	let href = "mail";
-	href += "to";
-	href += ":";
-	href += eml;
-	href += "?";
-	href += "subject=";
-	href += subject;
-	href += "&";
-	href += "body=";
-	href += body;
-
-	location.href = href;
+	location.href = getMailLink({
+		name: "Turtlemay",
+		user: "mc",
+		domain: "trtl.in",
+		subject: "Whitelist Application",
+		message: emailText,
+	});
 });
 </script>
 
