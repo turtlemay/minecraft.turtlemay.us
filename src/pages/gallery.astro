@@ -12,19 +12,14 @@ const importImages = import.meta.glob<{ default: ImageMetadata }>(
 	"/src/screenshots/**/*.{jpg,png}"
 );
 
-async function getImages() {
-	const arr = await Promise.all(Object.keys(importImages).map(async k => {
-		const basename = path.basename(k);
-		const { default: image } = await importImages[k]();
-		return {
-			basename: basename,
-			image: image,
-		};
-	}));
-	return arr;
-}
-
-const images = await getImages();
+const images = await Promise.all(Object.keys(importImages).map(async k => {
+	const basename = path.basename(k);
+	const { default: image } = await importImages[k]();
+	return {
+		basename: basename,
+		image: image,
+	};
+}));
 ---
 <SiteLayout title="Turtlemay's Minecraft Gallery" description="Minecraft screenshots.">
 	<main class="site-page">
