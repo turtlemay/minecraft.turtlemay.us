@@ -26,8 +26,8 @@ const images = await Promise.all(Object.keys(importImages).map(async k => {
 		<section>
 			<LinkCallout reverseArrow text="Go Home" href="/" />
 		</section>
-		<section>
-			<a href={whacACreep.src} class="featured-image">
+		<section class="featured-image">
+			<a href={whacACreep.src}>
 				<Image src={whacACreep} alt="" width={700} />
 			</a>
 		</section>
@@ -44,7 +44,7 @@ const images = await Promise.all(Object.keys(importImages).map(async k => {
 			<ul class="images-list">
 				{images.map(v => (
 					<li>
-						<a href={v.image.src}>
+						<a class="image-link" href={v.image.src}>
 							<Image src={v.image} alt="" width={400} title={v.basename} />
 						</a>
 					</li>
@@ -62,20 +62,18 @@ const images = await Promise.all(Object.keys(importImages).map(async k => {
 	margin: 2em 0 0;
 }
 
-a:has(img) {
-	border: 0 !important;
-	filter: none !important;
-}
-
 h2 .tip-text {
 	font-size: 16px;
 }
 
 .featured-image {
-	display: block;
 	text-align: center;
 	img {
 		width: 100%;
+	}
+	a {
+		border: 0 !important;
+		filter: none !important;
 	}
 }
 
@@ -98,12 +96,18 @@ h2 .tip-text {
 		padding: 0;
 	}
 	img {
-		box-sizing: border-box;
-		border: 1px solid #eee;
-		padding: 0.5em;
-		margin: 0 auto;
 		max-width: 100%;
 		height: auto;
+	}
+	a {
+		display: inline-flex;
+		border: 0;
+		filter: none;
+	}
+	.image-link {
+		box-sizing: border-box;
+		padding: 0.5em;
+		border: 1px solid #eee;
 		transition-duration: 200ms;
 		transition-property: border-color, filter;
 		&:hover {
@@ -113,10 +117,6 @@ h2 .tip-text {
 			filter: brightness(0.8);
 		}
 	}
-	a {
-		display: inline-block;
-		border: 0;
-		filter: none;
-	}
 }
+
 </style>
