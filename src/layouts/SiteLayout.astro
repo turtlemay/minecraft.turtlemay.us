@@ -2,14 +2,14 @@
 import BaseHead from "../components/BaseHead.astro";
 import { Image } from "astro:assets";
 
+import mcServerVersion from "../mc-version.txt?raw";
+
 import headerImg from "../images/2024-12-10_17.21.04.jpg";
 
 interface Props {
 	title?: string;
 	description?: string;
 }
-
-const MC_SERVER_VERSION = "1.21.3";
 
 Astro.props.title ??= "Turtlemay's Minecraft Server";
 Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
@@ -26,7 +26,7 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 		<div class="subheading" aria-hidden="true">
 			<span>mc.trtl.in</span>
 			<span class="dingbat" aria-hidden="true">❖</span>
-			<span>{MC_SERVER_VERSION}</span>
+			<span>{mcServerVersion}</span>
 		</div>
 	</div>
 	<slot />
