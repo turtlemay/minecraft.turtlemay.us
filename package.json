@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^4.0.3",
     "@fontsource/roboto": "^5.1.0",
     "@types/node": "^22.10.2",
     "astro": "^5.0.7"
