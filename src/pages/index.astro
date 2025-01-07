@@ -140,9 +140,9 @@ const UPDATED_DATE = new Date("Jan 4, 2025");
 	</main>
 	<div class="updated-date">
 		Updated:
-		<date datetime={UPDATED_DATE.toISOString()} aria-description="page updated date">
+		<time datetime={UPDATED_DATE.toISOString()} aria-description="page updated date">
 			{UPDATED_DATE.toLocaleDateString("en-us", { year: "numeric", month: "short", day: "numeric"})}
-		</date>
+		</time>
 	</div>
 </SiteLayout>
 
