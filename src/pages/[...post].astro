@@ -1,0 +1,72 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import LinkCallout from "../components/LinkCallout.astro";
+import BlogImage from "../components/BlogImage.astro";
+
+import "../styles/blog-post.css";
+
+type Props = CollectionEntry<"posts">;
+
+export async function getStaticPaths() {
+	const arr = await getCollection("posts", v => {
+		return import.meta.env.PROD ? v.data.draft !== true : true;
+	});
+	return arr.map(v => ({
+		params: { post: `/posts/${v.slug}` },
+		props: v,
+	}));
+}
+
+const d = Astro.props.data;
+
+const { Content } = await Astro.props.render();
+---
+<SiteLayout title={`${d.title} — Turtlemay's Minecraft Server`} description={d.description}>
+	<div class="site-page">
+		<section class="top-callout">
+			<LinkCallout reverseArrow text="Go Home" href="/" />
+		</section>
+		<section class="blog-post">
+			<div class="post-info">
+				<div class="post-date">
+					<time datetime={d.pubDate.toISOString()}>
+						{d.pubDate.toLocaleDateString("en-us", { year: "numeric", month: "short", day: "numeric" })}
+					</time>
+				</div>
+				<div class="post-author">
+					{d.author}
+				</div>
+			</div>
+			<h2 class="post-heading">
+				{d.draft && <span class="draft-text">[Draft]</span>}
+				{d.title}
+			</h2>
+			<Content components={{ img: BlogImage }} />
+		</section>
+		<section class="end-callout">
+			<LinkCallout reverseArrow text="Go Home" href="/" />
+		</section>
+	</div>
+</SiteLayout>
+
+<style>
+.post-info {
+	font: 14px "Roboto";
+	color: #999;
+	display: flex;
+	> :first-child {
+		&::after {
+			content: "—";
+			margin: 0.25em;
+		}
+	}
+}
+
+.post-heading {
+	margin-top: 0;
+	.draft-text {
+		color: palevioletred;
+	}
+}
+</style>
