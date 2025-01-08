@@ -1,16 +1,18 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
 import mcServerVersion from "../mc-version.txt?raw";
 
-import headerImg from "../images/2024-12-10_17.21.04.jpg";
+import defaultHeaderImg from "../images/2024-12-10_17.21.04.jpg";
 
 import "../styles/site-page.css";
 
 interface Props {
 	title?: string;
 	description?: string;
+	headerImg?: ImageMetadata;
 }
 
 Astro.props.title ??= "Turtlemay's Minecraft Server";
@@ -21,7 +23,7 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 </head>
 <body>
 	<div class="header-image">
-		<Image src={headerImg} alt="" width={1920} />
+		<Image src={Astro.props.headerImg ?? defaultHeaderImg} alt="" width={1920} />
 	</div>
 	<div class="page-header">
 		<h1 class="heading">Turtlemay's Private Minecraft Server</h1>

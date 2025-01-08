@@ -4,6 +4,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import BlogImage from "../components/BlogImage.astro";
 
+import headerImg from "../images/2025-01-06_10.52.29.jpg";
+
 import "../styles/blog-post.css";
 
 type Props = CollectionEntry<"posts">;
@@ -22,7 +24,7 @@ const d = Astro.props.data;
 
 const { Content } = await Astro.props.render();
 ---
-<SiteLayout title={`${d.title} — Turtlemay's Minecraft Server`} description={d.description}>
+<SiteLayout title={`${d.title} — Turtlemay's Minecraft Server`} description={d.description} headerImg={headerImg}>
 	<div class="site-page">
 		<section class="top-callout">
 			<LinkCallout reverseArrow text="Go Home" href="/" />
