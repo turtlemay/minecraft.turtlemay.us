@@ -3,12 +3,14 @@ import { Image } from "astro:assets";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 
-import whacACreep from "../images/whac-a-creeper.gif";
+import img from "../images/whac-a-creeper.gif";
 ---
+<meta name="robots" content="noindex" />
+
 <SiteLayout title="404: Page Not Found">
 	<main class="site-page">
 		<section class="featured-image">
-			<Image src={whacACreep} alt="" width={700} />
+			<Image src={img} alt="" width={700} />
 		</section>
 		<section>
 			<h2>Page Not Found</h2>
