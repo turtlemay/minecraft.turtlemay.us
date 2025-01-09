@@ -6,30 +6,40 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import TipWidget from "../components/TipWidget.astro";
 
-import whacACreep from "../images/whac-a-creeper.gif";
+const importImages = [
+	import.meta.glob<{ default: ImageMetadata }>(
+		"/src/screenshots/gallery1/**/*.{jpg,png}"),
+	import.meta.glob<{ default: ImageMetadata }>(
+		"/src/screenshots/gallery2/**/*.{jpg,png}"),
+];
 
-const importImages = import.meta.glob<{ default: ImageMetadata }>(
-	"/src/screenshots/**/*.{jpg,png}"
-);
-
-const images = await Promise.all(Object.keys(importImages).map(async k => {
-	const basename = path.basename(k);
-	const { default: image } = await importImages[k]();
-	return {
-		basename: basename,
-		image: image,
-	};
-}));
+const images = await Promise.all(importImages.map(async vv => (
+	await Promise.all(Object.keys(vv).map(async k => {
+		const basename = path.basename(k);
+		const { default: image } = await vv[k]();
+		return {
+			basename: basename,
+			image: image,
+		};
+	}))
+)));
 ---
 <SiteLayout title="Turtlemay's Minecraft Gallery" description="Minecraft screenshots.">
 	<main class="site-page">
 		<section>
 			<LinkCallout reverseArrow text="Go Home" href="/" />
 		</section>
-		<section class="featured-image">
-			<a href={whacACreep.src}>
-				<Image src={whacACreep} alt="" width={700} />
-			</a>
+		<section>
+			<h2>2024—Present</h2>
+			<ul class="images-list">
+				{images[1].map(v => (
+					<li>
+						<a class="image-link" href={v.image.src}>
+							<Image src={v.image} alt="" width={400} title={v.basename} />
+						</a>
+					</li>
+				))}
+			</ul>
 		</section>
 		<section>
 			<h2>
@@ -40,9 +50,8 @@ const images = await Promise.all(Object.keys(importImages).map(async k => {
 					</TipWidget>
 				</span>
 			</h2>
-			<p>Shenanigans from another time.</p>
 			<ul class="images-list">
-				{images.map(v => (
+				{images[0].map(v => (
 					<li>
 						<a class="image-link" href={v.image.src}>
 							<Image src={v.image} alt="" width={400} title={v.basename} />
@@ -66,19 +75,8 @@ h2 .tip-text {
 	font-size: 16px;
 }
 
-.featured-image {
-	text-align: center;
-	img {
-		width: 100%;
-	}
-	a {
-		border: 0 !important;
-		filter: none !important;
-	}
-}
-
 .images-list {
-	margin: 2em 0;
+	margin: 2em 0 4em;
 	padding: 0;
 	display: grid;
 	justify-content: center;
