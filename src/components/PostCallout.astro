@@ -16,7 +16,9 @@ const d = entry.data;
 ---
 <div class="post-callout">
 	<div class="post-image">
-		<Image alt="" src={d.coverImage} width="200" />
+		<a class="post-link" href={`/posts/${Astro.props.id}`}>
+			<Image alt="" src={d.coverImage} width="200" />
+		</a>
 	</div>
 	<div class="post-info">
 		<div class="post-title">
@@ -59,6 +61,12 @@ const d = entry.data;
 	aspect-ratio: 1;
 	overflow: hidden;
 	border: 5px solid #eee;
+}
+
+.post-link {
+	&:has(img) {
+		border: 0;
+	}
 }
 
 .post-info {
