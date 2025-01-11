@@ -1,0 +1,105 @@
+---
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+
+interface Props {
+	id: string;
+}
+
+const entry = await getEntry("posts", Astro.props.id);
+
+if (!entry) {
+	throw new Error(`Entry "${Astro.props.id}" not found.`);
+}
+
+const d = entry.data;
+---
+<div class="post-callout">
+	<div class="post-image">
+		<Image alt="" src={d.coverImage} width="200" />
+	</div>
+	<div class="post-info">
+		<div class="post-title">
+			<a class="post-link" href="/posts/001">
+				{d.title}
+			</a>
+		</div>
+		<div class="post-description">{d.description}</div>
+		<div class="post-details">
+			<div class="post-type">Blog Post</div>
+			<div class="post-date">
+				{d.pubDate.toLocaleDateString("en-us", { year: "numeric", month: "short" })}
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.post-callout {
+	display: inline-grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 1em;
+	margin: 1em 0;
+
+	@media(width < 500px) {
+		align-items: flex-start;
+		* {
+			font-size: 1em !important;
+		}
+	}
+}
+
+.post-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border: 5px solid #eee;
+}
+
+.post-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.post-title {
+	font: bold 22px "Roboto";
+	color: #222;
+	line-height: 1.5;
+}
+
+.post-details {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	font: 16px "Roboto";
+	line-height: 1.5;
+	color: #666;
+}
+
+.post-description {
+	font: 16px "Roboto";
+	line-height: 1.5;
+	color: #333;
+}
+
+.post-type {
+	&::before {
+		content: "📰";
+		filter: grayscale(1);
+		margin-right: 3px;
+	}
+}
+
+.post-date {
+	&::before {
+		content: "🗓️";
+		filter: grayscale(1);
+	}
+}
+</style>

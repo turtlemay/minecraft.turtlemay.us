@@ -8,6 +8,7 @@ import emailText from "../email-body.txt?raw";
 
 import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
+import PostCallout from "../components/PostCallout.astro";
 
 const UPDATED_DATE = new Date("Jan 8, 2025");
 ---
@@ -31,9 +32,13 @@ const UPDATED_DATE = new Date("Jan 8, 2025");
 			<p>
 				News will be posted to the private
 				<a href="https://discord.com/">Discord</a>.
-				At the end of each month, I will be posting a recap blog and showcase of our ongoing survival and building efforts.
 			</p>
-			<LinkCallout text="Visit the Blog" href="/posts" />
+		</section>
+		<section>
+			<h2>Blog</h2>
+			<p>A preview of our forthcoming blog is now available.</p>
+			<PostCallout id="001" />
+			<p>At the end of each month, I will be posting a recap blog and showcase of our ongoing survival and building efforts.</p>
 		</section>
 		<section>
 			<h2>About Turtlemay</h2>
