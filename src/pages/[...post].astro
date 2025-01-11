@@ -42,6 +42,7 @@ const { Content } = await Astro.props.render();
 			</div>
 			<h2 class="post-heading">
 				{d.draft && <span class="draft-text">[Draft]</span>}
+				{!d.draft && d.preview && <span class="draft-text">[Preview]</span>}
 				{d.title}
 			</h2>
 			<Content components={{ img: BlogImage }} />

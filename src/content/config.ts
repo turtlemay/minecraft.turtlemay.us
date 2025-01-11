@@ -5,6 +5,7 @@ export const collections = {
 		type: "content",
 		schema: ({ image }) => z.object({
 			draft: z.boolean().optional(),
+			preview: z.boolean().optional(),
 			author: z.string(),
 			title: z.string(),
 			description: z.string(),
