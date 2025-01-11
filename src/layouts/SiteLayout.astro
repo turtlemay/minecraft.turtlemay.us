@@ -22,17 +22,19 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 	<BaseHead title={Astro.props.title} description={Astro.props.description} />
 </head>
 <body>
-	<div class="header-image">
-		<Image src={Astro.props.headerImg ?? defaultHeaderImg} alt="" width={1920} />
-	</div>
-	<div class="page-header">
-		<h1 class="heading">Turtlemay's Private Minecraft Server</h1>
-		<div class="subheading" aria-hidden="true">
-			<span>mc.trtl.in</span>
-			<span class="dingbat" aria-hidden="true">❖</span>
-			<span>{mcServerVersion}</span>
+	<header>
+		<div class="header-image">
+			<Image src={Astro.props.headerImg ?? defaultHeaderImg} alt="" width={1920} />
 		</div>
-	</div>
+		<div class="page-header">
+			<h1 class="heading">Turtlemay's Private Minecraft Server</h1>
+			<div class="subheading" aria-hidden="true">
+				<span>mc.trtl.in</span>
+				<span class="dingbat" aria-hidden="true">❖</span>
+				<span>{mcServerVersion}</span>
+			</div>
+		</div>
+	</header>
 	<slot />
 </body>
 
@@ -60,6 +62,7 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 	}
 	.heading {
 		font: bold 30px "Roboto", sans-serif;
+		text-wrap: balance;
 	}
 	.subheading {
 		font: 16px "Roboto", sans-serif;
@@ -67,6 +70,12 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 	}
 	.dingbat {
 		color: #333;
+	}
+}
+
+@media(width < 600px) {
+	.page-header .heading {
+		font-size: 20px;
 	}
 }
 </style>
