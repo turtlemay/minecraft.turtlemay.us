@@ -3,6 +3,8 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
 import { Image } from "astro:assets";
 import { getMailLink } from "../lib/email";
+import StatusWidget from "../components/StatusWidget.tsx";
+import { __initData } from "../status-api.ts";
 
 import emailText from "../email-body.txt?raw";
 
@@ -11,6 +13,8 @@ import hubImg from "../images/2024-12-11_13.45.54.jpg";
 import PostCallout from "../components/PostCallout.astro";
 
 const UPDATED_DATE = new Date("Jan 11, 2025");
+
+const statusWidgetData = await __initData();
 ---
 <SiteLayout>
 	<main class="site-page">
@@ -129,6 +133,7 @@ const UPDATED_DATE = new Date("Jan 11, 2025");
 			<p>
 				We are hosted on a dedicated home server with quad-core 3.6GHz, 16GB RAM, SSD, and 10Mbps upload, located in Ohio, using the latest Paper server software with minimal plugins besides MultiVerse and some creative tools.
 			</p>
+			<StatusWidget client:load initialData={statusWidgetData} />
 			<p>
 				Test your ping with
 				<samp>ping mc.trtl.in</samp>.

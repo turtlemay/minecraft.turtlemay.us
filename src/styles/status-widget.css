@@ -1,0 +1,93 @@
+.status-widget {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 20em;
+	background: #f5f5f5;
+	border: 5px solid #eee;
+	border-left: 0;
+	border-right: 0;
+	line-height: 2;
+	margin: 2em 0;
+	padding: 2em 1em 3em 3em;
+	font: 16px "Roboto";
+	color: #222;
+}
+
+.status-widget section {
+	margin-bottom: 1em;
+}
+
+.status-widget img {
+	padding: 0 !important;
+	border: 3px solid #111 !important;
+}
+
+.status-widget *:has(.column) {
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 1em;
+	column-gap: 3em;
+}
+
+.status-widget .heading {
+	font-weight: bold;
+	color: #000;
+	margin: 0.5em 0;
+	&::after {
+		content: ": ";
+	}
+}
+
+.status-widget ul {
+	padding-left: 1em;
+}
+
+.status-widget .players-text {
+	font: inherit;
+}
+
+.status-widget .hostname-text {
+	font-family: monospace;
+}
+
+.status-widget .ip-text {
+	font-family: monospace;
+}
+
+.status-widget .port-text {
+	font-family: monospace;
+}
+
+.status-widget .motd-text {
+	font-style: italic;
+	&::before, &::after {
+		content: "\"";
+	}
+}
+
+.status-widget .plugin-version-text {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0 5px;
+	padding: 0 5px;
+	font-family: monospace;
+	background: #f0f0f0;
+	color: #999;
+	border: 1px solid #e0e0e0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: text-top;
+	max-width: 200px;
+}
+
+.status-widget .online-status {
+	&[data-online="true"] {
+		color: darkgreen;
+	}
+	&[data-online="false"] {
+		color: darkred;
+	}
+}
