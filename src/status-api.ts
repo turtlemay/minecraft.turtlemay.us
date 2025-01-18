@@ -38,10 +38,12 @@ export async function getRemoteData(input = API_ENDPOINT) {
 	}
 }
 
-export async function __initData() {
-	const cachedData = await __getCachedData(DATA_CACHE_FILE);
-	if (cachedData) {
-		return cachedData;
+export async function __initData(preferCachedData = true) {
+	if (preferCachedData) {
+		const cachedData = await __getCachedData(DATA_CACHE_FILE);
+		if (cachedData) {
+			return cachedData;
+		}
 	}
 	const remoteData = await getRemoteData();
 	if (remoteData) {
