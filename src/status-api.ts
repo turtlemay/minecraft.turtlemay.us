@@ -52,6 +52,10 @@ export async function __initData(preferCachedData = true) {
 		__saveCachedData(remoteData, DATA_CACHE_FILE);
 		return remoteData;
 	}
+	const fallbackData = await __getCachedData(DATA_CACHE_FILE);
+	if (fallbackData) {
+		return fallbackData;
+	}
 	return null;
 }
 
