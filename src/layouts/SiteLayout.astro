@@ -5,8 +5,6 @@ import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import manifest from "../../package.json";
 
-import mcServerVersion from "../mc-version.txt?raw";
-
 import defaultHeaderImg from "../images/2024-12-10_17.21.04.jpg";
 
 import "../styles/site-page.css";
@@ -35,7 +33,7 @@ const commitId = cp.execSync("git rev-parse HEAD").toString().trim();
 			<div class="subheading" aria-hidden="true">
 				<span>mc.trtl.in</span>
 				<span class="dingbat" aria-hidden="true">❖</span>
-				<span>{mcServerVersion}</span>
+				<span>{manifest.mcversion}</span>
 			</div>
 		</div>
 	</header>
