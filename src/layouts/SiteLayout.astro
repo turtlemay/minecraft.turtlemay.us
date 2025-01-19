@@ -1,7 +1,9 @@
 ---
+import cp from "child_process";
 import BaseHead from "../components/BaseHead.astro";
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
+import manifest from "../../package.json";
 
 import mcServerVersion from "../mc-version.txt?raw";
 
@@ -17,6 +19,8 @@ interface Props {
 
 Astro.props.title ??= "Turtlemay's Minecraft Server";
 Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
+
+const commitId = cp.execSync("git rev-parse HEAD").toString().trim();
 ---
 <head>
 	<BaseHead title={Astro.props.title} description={Astro.props.description} />
@@ -36,6 +40,29 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 		</div>
 	</header>
 	<slot />
+	<footer class="footer">
+		<div>
+			<span>Static Build:</span>
+			<span>
+				{new Date().toLocaleString("en-US", {
+					year: "2-digit",
+					month: "2-digit",
+					day: "2-digit",
+					hour: "2-digit",
+					hour12: false,
+					minute: "2-digit",
+					timeZoneName: "short",
+				})}
+			</span>
+		</div>
+		<div class="spacer" />
+		<div>
+			<span>Source:</span>
+			<a class="commit-id commit-id-link" href={manifest.repository.url}>
+				{commitId.substring(0, 7)}
+			</a>
+		</div>
+	</footer>
 </body>
 
 <style>
@@ -70,6 +97,38 @@ Astro.props.description ??= "Turtlemay's Minecraft server landing page.";
 	}
 	.dingbat {
 		color: #333;
+	}
+}
+
+.footer {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	justify-content: center;
+	font: 12px "Roboto";
+	margin-top: 3em;
+	padding: 1em 2em;
+	background: #f5f5f5;
+	color: #999;
+
+	.commit-id {
+		display: inline-block;
+		padding: 0.5em;
+		background: #fff;
+		color: #333;
+		border: 1px solid #e0e0e0;
+		border-radius: 5px;
+	}
+	.commit-id-link {
+		text-decoration: none;
+		transition-duration: 200ms;
+		transition-property: filter;
+		&:hover {
+			filter: contrast(0.95);
+		}
+		&:active {
+			filter: opacity(0.8);
+		}
 	}
 }
 
