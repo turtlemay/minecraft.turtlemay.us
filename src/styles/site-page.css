@@ -2,7 +2,7 @@
 	margin: 0 auto 10em;
 	padding-left: var(--site-margin);
 	padding-right: var(--site-margin);
-	max-width: 800px;
+	max-width: var(--site-max-width);
 	font: 16px "Roboto", sans-serif;
 	line-height: 1.7;
 	color: #222;

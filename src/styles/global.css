@@ -1,5 +1,6 @@
 :root {
 	--site-margin: 2em;
+	--site-max-width: 800px;
 }
 
 body {
