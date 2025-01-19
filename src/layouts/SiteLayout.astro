@@ -39,26 +39,28 @@ const commitId = cp.execSync("git rev-parse HEAD").toString().trim();
 	</header>
 	<slot />
 	<footer class="footer">
-		<div>
-			<span>Static Build:</span>
-			<span>
-				{new Date().toLocaleString("en-US", {
-					year: "2-digit",
-					month: "2-digit",
-					day: "2-digit",
-					hour: "2-digit",
-					hour12: false,
-					minute: "2-digit",
-					timeZoneName: "short",
-				})}
-			</span>
-		</div>
-		<div class="spacer" />
-		<div>
-			<span>Source:</span>
-			<a class="commit-id commit-id-link" href={manifest.repository.url}>
-				{commitId.substring(0, 7)}
-			</a>
+		<div class="footer-layout">
+			<div>
+				<span>Static Build:</span>
+				<span>
+					{new Date().toLocaleString("en-US", {
+						year: "2-digit",
+						month: "2-digit",
+						day: "2-digit",
+						hour: "2-digit",
+						hour12: false,
+						minute: "2-digit",
+						timeZoneName: "short",
+					})}
+				</span>
+			</div>
+			<div class="spacer" />
+			<div>
+				<span>Source:</span>
+				<a class="commit-id commit-id-link" href={manifest.repository.url}>
+					{commitId.substring(0, 7)}
+				</a>
+			</div>
 		</div>
 	</footer>
 </body>
@@ -99,15 +101,18 @@ const commitId = cp.execSync("git rev-parse HEAD").toString().trim();
 }
 
 .footer {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	align-items: center;
-	justify-content: center;
 	font: 12px "Roboto";
 	margin-top: 3em;
 	padding: 1em 2em;
 	background: #f5f5f5;
 	color: #999;
+
+	.footer-layout {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		justify-content: center;
+	}
 
 	.commit-id {
 		display: inline-block;
