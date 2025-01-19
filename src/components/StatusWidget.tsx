@@ -32,20 +32,24 @@ export default function (props: {
 					<section>
 						<img src={d.icon} />
 					</section>
-					<section>
-						<span class="heading">Status</span>
-						<span class="online-status" data-id="online-status-text" data-online={`${d.online}`}>
-							{d.online ? "Online" : "Offline"}
-						</span>
-					</section>
-					<section>
-						<span class="heading">Players</span>
-						<span class="players-text">
-							<span data-id="online-players-text">{d.players.online}</span>
-							<span>/</span>
-							<span>{d.players.max}</span>
-						</span>
-					</section>
+					{data && (
+						<section>
+							<span class="heading">Status</span>
+								<span class="online-status" data-id="online-status-text" data-online={`${data.online === true}`}>
+									{data.online ? "Online" : "Offline"}
+								</span>
+						</section>
+					)}
+					{data && (
+						<section>
+							<span class="heading">Players</span>
+							<span class="players-text">
+								<span data-id="online-players-text">{d.players.online}</span>
+								<span>/</span>
+								<span>{d.players.max}</span>
+							</span>
+						</section>
+					)}
 					<section>
 						<span class="heading">Hostname</span>
 						<span class="hostname-text">mc.trtl.in</span>
