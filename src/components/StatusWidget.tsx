@@ -6,7 +6,7 @@ import "../styles/status-widget.css";
 export default function (props: {
 	initialData: Awaited<ReturnType<typeof getRemoteData>>,
 }) {
-	const [data, setData] = useState(props.initialData);
+	const [data, setData] = useState<typeof props.initialData>(null);
 
 	if (import.meta.env.PROD) {
 		useEffect(updateData, []);
