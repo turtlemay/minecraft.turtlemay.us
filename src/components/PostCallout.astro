@@ -67,6 +67,9 @@ const d = entry.data;
 	&:has(img) {
 		border: 0;
 	}
+	&:has(img):hover, &:has(img):active {
+		filter: initial;
+	}
 }
 
 .post-info {
