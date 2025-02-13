@@ -13,7 +13,7 @@ import turtlemayImg from "../images/2024-12-11_13.47.56.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
 import PostCallout from "../components/PostCallout.astro";
 
-const UPDATED_DATE = new Date("Jan 24, 2025");
+const UPDATED_DATE = new Date("Feb 13, 2025");
 
 const statusWidgetData = await __initData(import.meta.env.DEV);
 
@@ -28,21 +28,18 @@ const items = (await getCollection("posts", v => {
 		<section>
 			<p>
 				<samp>mc.trtl.in</samp>
-				is my new small
-				<a href="https://www.minecraft.net/en-us/store/minecraft-java-bedrock-edition-pc">Minecraft</a>
-				server in the eastern US with survival and creative maps. Vanilla co-op survival is our foundation, complemented by a classic flat grass creative world.
+				is my small Minecraft server in the eastern US with survival and creative maps. Vanilla co-op survival is our foundation, complemented by a classic flat grass creative world.
 			</p>
 			<LinkCallout text="Join" href="#join" />
 		</section>
 		<section>
 			<h2>Status</h2>
 			<p>
-				The server was recently launched with 3+ players (Pale Garden update). I am looking for a few more to join the group!
+				We are looking for a few more to join the group! The server was recently launched in December 2024 with the Pale Garden update. Only a few players are active and progressing at a modest pace. Very little of the world has been explored.
 			</p>
 			<Image src={hubImg} alt="" width={500} />
 			<p>
-				News will be posted to the private
-				<a href="https://discord.com/">Discord</a>.
+				News will be posted to the private Discord along with monthly updates here.
 			</p>
 		</section>
 		<section>
@@ -115,7 +112,7 @@ const items = (await getCollection("posts", v => {
 			</div>
 		</section>
 		<section class="server-rules">
-			<h2>Server Rules</h2>
+			<h2>Community Rules</h2>
 			<ul>
 				<li>Be good to each other.</li>
 			</ul>
