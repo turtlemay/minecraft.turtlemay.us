@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import LinkCallout from "../components/LinkCallout.astro";
+import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import { getMailLink } from "../lib/email";
 import StatusWidget from "../components/StatusWidget.tsx";
@@ -15,6 +16,12 @@ import PostCallout from "../components/PostCallout.astro";
 const UPDATED_DATE = new Date("Jan 24, 2025");
 
 const statusWidgetData = await __initData(import.meta.env.DEV);
+
+const items = (await getCollection("posts", v => {
+	return import.meta.env.PROD ? v.data.draft !== true : true;
+})).sort((a, b) => {
+	return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
 ---
 <SiteLayout>
 	<main class="site-page">
@@ -40,8 +47,8 @@ const statusWidgetData = await __initData(import.meta.env.DEV);
 		</section>
 		<section>
 			<h2>Blog</h2>
-			<p>Our first blog post is now available:</p>
-			<PostCallout id="001" />
+			<p>Our latest blog post is available here:</p>
+			<PostCallout id={items[0].slug} />
 			<p>At the end of each month, I will be posting a recap blog and showcase of our ongoing survival and building efforts.</p>
 		</section>
 		<section>
