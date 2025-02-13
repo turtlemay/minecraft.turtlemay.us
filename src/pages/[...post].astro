@@ -27,7 +27,7 @@ const { Content } = await Astro.props.render();
 <SiteLayout title={`${d.title} — Turtlemay's Minecraft Server`} description={d.description} headerImg={headerImg}>
 	<div class="site-page">
 		<section class="top-callout">
-			<LinkCallout reverseArrow text="Go Home" href="/" />
+			<LinkCallout reverseArrow text="Back to Blog" href="/posts" />
 		</section>
 		<section class="blog-post">
 			<div class="post-info">
@@ -50,7 +50,7 @@ const { Content } = await Astro.props.render();
 			<Content components={{ img: BlogImage }} />
 		</section>
 		<section class="end-callout">
-			<LinkCallout reverseArrow text="Go Home" href="/" />
+			<LinkCallout reverseArrow text="Back to Blog" href="/posts" />
 		</section>
 	</div>
 </SiteLayout>

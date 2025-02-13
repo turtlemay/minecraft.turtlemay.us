@@ -50,6 +50,7 @@ const items = (await getCollection("posts", v => {
 			<p>Our latest blog post is available here:</p>
 			<PostCallout id={items[0].slug} />
 			<p>At the end of each month, I will be posting a recap blog and showcase of our ongoing survival and building efforts.</p>
+			<LinkCallout text="Visit the blog" href="/posts" />
 		</section>
 		<section>
 			<h2>About Turtlemay</h2>

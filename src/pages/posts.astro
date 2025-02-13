@@ -1,0 +1,144 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import LinkCallout from "../components/LinkCallout.astro";
+
+import headerImg from "../images/2025-01-06_10.52.29.jpg";
+
+const items = (await getCollection("posts", v => {
+	return import.meta.env.PROD ? v.data.draft !== true : true;
+})).sort((a, b) => {
+	return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+---
+<SiteLayout title="Turtlemay's Minecraft Server Blog" description="mc.trtl.in Minecraft server blog." headerImg={headerImg}>
+	<div class="top-callout">
+		<LinkCallout reverseArrow={true} text="Go Home" href="/" />
+	</div>
+	<main class="site-page">
+		<h2>Blog Posts</h2>
+		{items.map(v => (
+			<div class="post">
+				<div class="post-image">
+					<a class="post-link" href={`/posts/${v.slug}`}>
+						<Image alt="" src={v.data.coverImage} width="200" />
+					</a>
+				</div>
+				<div class="post-info">
+					<div class="post-title">
+						<a class="post-link" href={`/posts/${v.slug}`}>
+							{v.data.title}
+						</a>
+					</div>
+					<div class="post-description">{v.data.description}</div>
+					<div class="post-details">
+						<div class="post-date">
+							{v.data.pubDate.toLocaleDateString("en-us", { year: "numeric", month: "short" })}
+						</div>
+						<div class="post-author">{v.data.author}</div>
+					</div>
+				</div>
+			</div>
+		))}
+	</main>
+	<div class="end-callout">
+		<LinkCallout reverseArrow={true} text="Go Home" href="/" />
+	</div>
+</SiteLayout>
+
+<style>
+h2 {
+	margin-bottom: 0.5em !important;
+}
+
+.post {
+	display: inline-grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 1em;
+	margin: 1em 0;
+
+	@media(width < 500px) {
+		align-items: flex-start;
+		* {
+			font-size: 1em !important;
+		}
+	}
+}
+
+.post-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	aspect-ratio: 1;
+	overflow: hidden;
+	border: 5px solid #eee;
+
+	@media(width > 700px) {
+		width: 200px;
+		aspect-ratio: initial;
+	}
+}
+
+.post-link {
+	&:has(img) {
+		border: 0;
+	}
+	&:has(img):hover, &:has(img):active {
+		filter: initial;
+	}
+}
+
+.post-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
+
+.post-title {
+	font: bold 22px "Roboto";
+	color: #222;
+	line-height: 1.5;
+}
+
+.post-details {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+	font: 16px "Roboto";
+	line-height: 1.5;
+	color: #666;
+}
+
+.post-description {
+	font: 16px "Roboto";
+	line-height: 1.5;
+	color: #333;
+}
+
+.post-author {
+	&::before {
+		content: "📓";
+		filter: grayscale(1);
+		margin-right: 3px;
+	}
+}
+
+.post-date {
+	&::before {
+		content: "🗓️";
+		filter: grayscale(1);
+	}
+}
+
+.top-callout {
+	margin: 2em auto;
+}
+
+.end-callout {
+	margin: 4em auto;
+}
+</style>
