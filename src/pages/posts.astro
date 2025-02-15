@@ -29,6 +29,9 @@ const items = (await getCollection("posts", v => {
 					<div class="post-title">
 						<a class="post-link" href={`/posts/${v.slug}`}>
 							{v.data.title}
+							{v.data.preview && (
+								<span class="post-title-preview-text">[Preview]</span>
+							)}
 						</a>
 					</div>
 					<div class="post-description">{v.data.description}</div>
@@ -102,6 +105,10 @@ h2 {
 	font: bold 22px "Roboto";
 	color: #222;
 	line-height: 1.5;
+}
+
+.post-title-preview-text {
+	color: palevioletred;
 }
 
 .post-details {

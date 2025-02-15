@@ -24,6 +24,9 @@ const d = entry.data;
 		<div class="post-title">
 			<a class="post-link" href={`/posts/${Astro.props.id}`}>
 				{d.title}
+				{d.preview && (
+					<span class="post-title-preview-text">[Preview]</span>
+				)}
 			</a>
 		</div>
 		<div class="post-description">{d.description}</div>
@@ -82,6 +85,10 @@ const d = entry.data;
 	font: bold 22px "Roboto";
 	color: #222;
 	line-height: 1.5;
+}
+
+.post-title-preview-text {
+	color: palevioletred;
 }
 
 .post-details {
