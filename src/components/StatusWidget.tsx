@@ -56,7 +56,7 @@ export default function (props: {
 					</section>
 					<section>
 						<span class="heading">IP Address</span>
-						<span class="ip-text">{d.ip}</span>
+						<span class="ip-text">{d.ip_address}</span>
 					</section>
 					<section>
 						<span class="heading">Port</span>

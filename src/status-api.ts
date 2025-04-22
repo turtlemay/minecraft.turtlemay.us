@@ -1,14 +1,14 @@
 import fs from "node:fs/promises";
 import { z } from "zod";
 
-const API_ENDPOINT = "https://api.mcsrvstat.us/3/mc.trtl.in";
+const API_ENDPOINT = "https://api.mcstatus.io/v2/status/java/mc.trtl.in";
 const DATA_CACHE_FILE = ".astro/_api-data-cache.json";
 
 const schema = z.object({
 	online: z.boolean(),
 	icon: z.string().url(),
-	ip: z.string().ip(),
-	hostname: z.string(),
+	ip_address: z.string().ip(),
+	host: z.string(),
 	port: z.number(),
 	software: z.string(),
 	players: z.object({
@@ -16,7 +16,7 @@ const schema = z.object({
 		max: z.number(),
 	}),
 	motd: z.object({
-		clean: z.array(z.string()),
+		clean: z.string(),
 	}),
 	plugins: z.array(
 		z.object({
