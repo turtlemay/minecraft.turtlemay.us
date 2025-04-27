@@ -27,12 +27,10 @@ const items = (await getCollection("posts", v => {
 				</div>
 				<div class="post-info">
 					<div class="post-title">
-						<a class="post-link" href={`/posts/${v.slug}`}>
-							{v.data.title}
-							{v.data.preview && (
-								<span class="post-title-preview-text">[Preview]</span>
-							)}
-						</a>
+						<a class="post-link" href={`/posts/${v.slug}`}>{v.data.title}</a>
+						{v.data.preview && (
+							<span class="post-title-preview-text">[Preview]</span>
+						)}
 					</div>
 					<div class="post-description">{v.data.description}</div>
 					<div class="post-details">
