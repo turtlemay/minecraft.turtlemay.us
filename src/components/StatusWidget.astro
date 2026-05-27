@@ -4,6 +4,7 @@ interface Props {
 }
 
 const d = Astro.props.data;
+const sortedPlugins = [...d.plugins].sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <style>
@@ -125,7 +126,7 @@ const d = Astro.props.data;
 			<section>
 				<span class="heading">Plugins</span>
 				<ul>
-					{[...d.plugins].map(v => (
+					{sortedPlugins.map(v => (
 						<li>
 							<span class="plugin-name-text">{v.name}</span>
 							<span class="plugin-version-text" title={v.version}>
