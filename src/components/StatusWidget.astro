@@ -38,7 +38,7 @@ const sortedPlugins = serverData.plugins.sort((a, b) => a.name.localeCompare(b.n
 	column-gap: 3em;
 }
 
-.status-widget .heading {
+.status-widget [role="heading"] {
 	font-weight: bold;
 	color: #000;
 	margin: 0.5em 0;
@@ -98,30 +98,30 @@ const sortedPlugins = serverData.plugins.sort((a, b) => a.name.localeCompare(b.n
 				<img src={serverData.icon} />
 			</section>
 			<section>
-				<span class="heading">Hostname</span>
+				<span role="heading">Hostname</span>
 				<span class="hostname-text">mc.trtl.in</span>
 			</section>
 			<section>
-				<span class="heading">IP Address</span>
+				<span role="heading">IP Address</span>
 				<span class="ip-text">{serverData.ip_address}</span>
 			</section>
 			<section>
-				<span class="heading">Port</span>
+				<span role="heading">Port</span>
 				<span class="port-text">{`${serverData.port}`}</span>&nbsp;
 				<span>{`${serverData.port}` == "25565" && "(Default)"}</span>
 			</section>
 			<section class="motd">
-				<span class="heading">MOTD</span>
+				<span role="heading">MOTD</span>
 				<span class="motd-text">{serverData.motd.clean}</span>
 			</section>
 		</div>
 		<div class="column right">
 			<section>
-				<span class="heading">Software</span>
+				<span role="heading">Software</span>
 				{serverData.software}
 			</section>
 			<section>
-				<span class="heading">Plugins</span>
+				<span role="heading">Plugins</span>
 				<ul>
 					{sortedPlugins.map(v => (
 						<li>
