@@ -1,3 +1,12 @@
+---
+interface Props {
+	data: any,
+}
+
+const d = Astro.props.data;
+---
+
+<style>
 .status-widget {
 	box-sizing: border-box;
 	display: flex;
@@ -82,12 +91,50 @@
 	vertical-align: text-top;
 	max-width: 200px;
 }
+</style>
 
-.status-widget .online-status {
-	&[data-online="true"] {
-		color: darkgreen;
-	}
-	&[data-online="false"] {
-		color: darkred;
-	}
-}
+<div class="status-widget">
+	<div>
+		<div class="column left">
+			<section>
+				<img src={d.icon} />
+			</section>
+			<section>
+				<span class="heading">Hostname</span>
+				<span class="hostname-text">mc.trtl.in</span>
+			</section>
+			<section>
+				<span class="heading">IP Address</span>
+				<span class="ip-text">{d.ip_address}</span>
+			</section>
+			<section>
+				<span class="heading">Port</span>
+				<span class="port-text">{`${d.port}`}</span>&nbsp;
+				<span>{`${d.port}` == "25565" && "(Default)"}</span>
+			</section>
+			<section class="motd">
+				<span class="heading">MOTD</span>
+				<span class="motd-text">{d.motd.clean}</span>
+			</section>
+		</div>
+		<div class="column right">
+			<section>
+				<span class="heading">Software</span>
+				{d.software}
+			</section>
+			<section>
+				<span class="heading">Plugins</span>
+				<ul>
+					{[...d.plugins].map(v => (
+						<li>
+							<span class="plugin-name-text">{v.name}</span>
+							<span class="plugin-version-text" title={v.version}>
+								{v.version}
+							</span>
+						</li>
+					))}
+				</ul>
+			</section>
+		</div>
+	</div>
+</div>

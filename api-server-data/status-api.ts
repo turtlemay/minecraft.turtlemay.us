@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import { z } from "zod";
 
 const API_ENDPOINT = "https://api.mcstatus.io/v2/status/java/mc.trtl.in";
-const DATA_CACHE_FILE = ".astro/_api-data-cache.json";
+const DATA_FILE = "api-server-data/data.json";
 
 const schema = z.object({
 	online: z.boolean(),
@@ -26,7 +26,7 @@ const schema = z.object({
 	),
 });
 
-export async function getRemoteData(input = API_ENDPOINT) {
+async function getRemoteData(input = API_ENDPOINT) {
 	try {
 		const res = await fetch(input);
 		const json = await res.json();
@@ -38,28 +38,15 @@ export async function getRemoteData(input = API_ENDPOINT) {
 	}
 }
 
-export async function __initData(preferCachedData = true) {
-	if (preferCachedData) {
-		const cachedData = await __getCachedData(DATA_CACHE_FILE);
-		if (cachedData) {
-			return cachedData;
-		}
-	}
+export async function fetchData() {
 	const remoteData = await getRemoteData();
-	if (remoteData) {
-		remoteData.online = true;
-		remoteData.players.online = 0;
-		__saveCachedData(remoteData, DATA_CACHE_FILE);
+	if (remoteData?.online) {
+		__saveLocalData(remoteData, DATA_FILE);
 		return remoteData;
 	}
-	const fallbackData = await __getCachedData(DATA_CACHE_FILE);
-	if (fallbackData) {
-		return fallbackData;
-	}
-	return null;
 }
 
-async function __getCachedData(filePath: string) {
+async function __getLocalData(filePath: string) {
 	try {
 		const json = await fs.readFile(filePath, "utf-8");
 		return schema.parse(JSON.parse(json));
@@ -69,7 +56,7 @@ async function __getCachedData(filePath: string) {
 	}
 }
 
-async function __saveCachedData(data: {}, filePath: string) {
+async function __saveLocalData(data: {}, filePath: string) {
 	try {
 		let zdata = schema.parse(data);
 		zdata.online = true;
