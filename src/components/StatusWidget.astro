@@ -1,10 +1,7 @@
 ---
-interface Props {
-	data: any,
-}
+import serverData from "../../api-server-data/data.json";
 
-const d = Astro.props.data;
-const sortedPlugins = [...d.plugins].sort((a, b) => a.name.localeCompare(b.name));
+const sortedPlugins = serverData.plugins.sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <style>
@@ -98,7 +95,7 @@ const sortedPlugins = [...d.plugins].sort((a, b) => a.name.localeCompare(b.name)
 	<div>
 		<div class="column left">
 			<section>
-				<img src={d.icon} />
+				<img src={serverData.icon} />
 			</section>
 			<section>
 				<span class="heading">Hostname</span>
@@ -106,22 +103,22 @@ const sortedPlugins = [...d.plugins].sort((a, b) => a.name.localeCompare(b.name)
 			</section>
 			<section>
 				<span class="heading">IP Address</span>
-				<span class="ip-text">{d.ip_address}</span>
+				<span class="ip-text">{serverData.ip_address}</span>
 			</section>
 			<section>
 				<span class="heading">Port</span>
-				<span class="port-text">{`${d.port}`}</span>&nbsp;
-				<span>{`${d.port}` == "25565" && "(Default)"}</span>
+				<span class="port-text">{`${serverData.port}`}</span>&nbsp;
+				<span>{`${serverData.port}` == "25565" && "(Default)"}</span>
 			</section>
 			<section class="motd">
 				<span class="heading">MOTD</span>
-				<span class="motd-text">{d.motd.clean}</span>
+				<span class="motd-text">{serverData.motd.clean}</span>
 			</section>
 		</div>
 		<div class="column right">
 			<section>
 				<span class="heading">Software</span>
-				{d.software}
+				{serverData.software}
 			</section>
 			<section>
 				<span class="heading">Plugins</span>

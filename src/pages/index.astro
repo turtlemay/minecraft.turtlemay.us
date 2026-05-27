@@ -6,7 +6,6 @@ import { Image } from "astro:assets";
 import { getMailLink } from "../lib/email";
 import StatusWidget from "../components/StatusWidget.astro";
 import emailText from "../email-body.txt?raw";
-import serverData from "../../api-server-data/data.json";
 import turtlemayImg from "../images/2025-02-15_00.21.51.jpg";
 import hubImg from "../images/2024-12-11_13.45.54.jpg";
 import PostCallout from "../components/PostCallout.astro";
@@ -150,7 +149,7 @@ const items = (await getCollection("posts", v => {
 			<p>
 				1.21.4 terrain is generated to a radius of 7500.
 			</p>
-			<StatusWidget data={serverData} />
+			<StatusWidget />
 			<p>
 				Test your ping with
 				<samp>ping mc.trtl.in</samp>.
